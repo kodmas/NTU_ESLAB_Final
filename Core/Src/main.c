@@ -34,6 +34,7 @@
 #include <inttypes.h>
 
 /* BSP drivers */
+// TODO: change the path to stm32l4 packages
 #include "../../Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.h"
 #include "../../Drivers/BSP/STM32F4-Discovery/stm32f4_discovery_audio.h"
 

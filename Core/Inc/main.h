@@ -31,13 +31,17 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
+// #include "stm32f4xx_hal.h"
+#include "stm32l4xx_hal.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "../../Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.h"
-#include "../../Drivers/BSP/STM32F4-Discovery/stm32f4_discovery_accelerometer.h"
-#include "../../Drivers/BSP/STM32F4-Discovery/stm32f4_discovery_audio.h"
+// #include "../../Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.h"
+// #include "../../Drivers/BSP/STM32F4-Discovery/stm32f4_discovery_accelerometer.h"
+// #include "../../Drivers/BSP/STM32F4-Discovery/stm32f4_discovery_audio.h"
+#include "../../Drivers/BSP/STM32L476G-Discovery/stm32l476g_discovery.h"
+#include "../../Drivers/BSP/B-L475E-IOT01/stm32l475e_iot01_accelero.h"
+#include "../../Drivers/BSP/STM32L476G-Discovery/stm32l476g_discovery_audio.h"
 #include <stdio.h>
 /* USER CODE END Includes */
 
