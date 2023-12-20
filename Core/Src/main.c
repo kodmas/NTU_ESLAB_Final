@@ -112,6 +112,10 @@ uint8_t display_words_enabled = 0;
 /* Check if the words can be printed */
 uint8_t print_words = 1;
 
+
+enum leds_status {
+	Off, Green, Blue, Red, Orange
+};
 /* Board led status  */
 enum leds_status led_status = Off;
 
@@ -301,7 +305,28 @@ int main(void){
 
             print_words = 1;
 
-            Recognize_and_output(word);
+            int out = Recognize_and_output(word);
+
+			if(out == 1)
+			{
+				led_status = Green;
+			}
+			else if(out == 2)
+			{
+				led_status = Off;
+			}
+			else if(out == 3)
+			{
+				led_status = Blue;
+			}
+			else if(out == 4)
+			{
+				led_status = Red;
+			}
+			else
+			{
+				led_status = Orange;
+			}
 
             if(display_words_enabled)
             {
@@ -316,7 +341,7 @@ int main(void){
     }
 }
 
-**
+/**
  * @brief System Clock Configuration
  * @retval None
  */
