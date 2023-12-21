@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <inttypes.h>
+#include "stdint.h"
 
 #include "stm32l475e_iot01_audio.h"
 
@@ -192,7 +193,7 @@ int main(void){
     ai_error ai_err;
     ai_i32 nbatch;
 
-    * Chunk of memory used to hold intermediate values for the neural network */
+    /* Chunk of memory used to hold intermediate values for the neural network */
 	AI_ALIGNED(4) ai_u8 activations[AI_SPEECH_COMMANDS_MODEL_DATA_ACTIVATIONS_SIZE];
 
 	/* Buffers used to store input and output tensors */
@@ -235,7 +236,7 @@ int main(void){
 	/* USER CODE BEGIN SysInit */
 
 	/* Initialize button */
-	BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_EXTI);
+	// BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_EXTI);
 
     MX_GPIO_Init();
 	MX_DMA_Init();
@@ -281,7 +282,7 @@ int main(void){
         execution_time_start(1);
 
         // Preprocess audio data
-        preprocess_audio((int16_t *) PCM_Buffer, (ai_float*) in_data, PCM_BUFFER_SIZE);
+        preprocess_audio((int16_t *) pcm_buffer, (ai_float*) &in_data[0], PCM_BUFFER_SIZE);
 
         execution_time_stop(1);
 

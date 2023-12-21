@@ -13,6 +13,7 @@
 
 #include <string.h>
 #include "audio_record.h"
+#include "../../MP34DT01/stm32l475e_iot01_audio.h"
 
 /* Variables -----------------------------------------------------------------*/
 
@@ -34,6 +35,7 @@ DMA_Buffer_State dma_transfer_state;
 /* Indicates the end of the PCM data acquisition */
 __IO uint32_t data_ready = 0;
 
+static BSP_AUDIO_Init_t MicParams;
 /* Functions -----------------------------------------------------------------*/
 
 /**
@@ -45,15 +47,21 @@ __IO uint32_t data_ready = 0;
  *
  * @retval None
  */
+
+static BSP_AUDIO_Init_t MicParams;
 void audio_record(void) {
 	dma_transfer_state = OFFSET_NONE;
+	MicParams.BitsPerSample = 16;
+    MicParams.ChannelsNbr = AUDIO_CHANNELS;
+    MicParams.Device = AUDIO_IN_DIGITAL_MIC1;
+    MicParams.SampleRate = AUDIO_SAMPLING_FREQUENCY;
+    MicParams.Volume = 32;
 
-	/* Initialize audio peripheral */
-	if (BSP_AUDIO_IN_Init(DEFAULT_AUDIO_IN_FREQ,
-	DEFAULT_AUDIO_IN_BIT_RESOLUTION,
-	DEFAULT_AUDIO_IN_CHANNEL_NBR) != AUDIO_OK) {
-		Error_Handler();
-	}
+    int32_t ret = BSP_AUDIO_IN_Init(AUDIO_INSTANCE, &MicParams);
+	// /* Initialize audio peripheral */
+	// if (BSP_AUDIO_IN_Init(OUTPUT_DEVICE_INPUT, 70, AUDIO_FREQUENCY_16K) != AUDIO_OK) {
+	// 	Error_Handler();
+	// }
 
 	/* Start the audio input record */
 	if (BSP_AUDIO_IN_Record((uint16_t*) &pdm_buffer[0],
