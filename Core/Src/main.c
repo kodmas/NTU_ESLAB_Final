@@ -6,11 +6,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <inttypes.h>
-#include "stdint.h"
+
+#include <stdint.h>
 
 #include "stm32l475e_iot01_audio.h"
-
+#include "stm32f4xx_hal_rcc.h"
 #include "arm_math.h"
 #include "feature_extraction.h"
 
@@ -47,7 +47,7 @@
 
 CRC_HandleTypeDef hcrc;
 I2C_HandleTypeDef hi2c1;
-I2S_HandleTypeDef hi2s2;
+// I2S_HandleTypeDef hi2s2;
 DMA_HandleTypeDef hdma_spi2_rx;
 SPI_HandleTypeDef hspi1;
 UART_HandleTypeDef huart2;
@@ -126,7 +126,7 @@ enum leds_status led_status = Off;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
-static void MX_I2S2_Init(void);
+// static void MX_I2S2_Init(void);
 static void MX_CRC_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_I2C1_Init(void);
